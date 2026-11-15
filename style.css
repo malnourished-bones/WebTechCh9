@@ -25,7 +25,7 @@ nav a:hover {
   color: lightskyblue;
 }
 
-/* keyframes: the dot in the banner pulses */
+/* keyframess */
 @keyframes pulse {
   from { transform: scale(1); }
   to { transform: scale(1.5); }
@@ -66,11 +66,10 @@ nav a:hover {
   border-radius: 5px;
   background-color: #15213a;
 
-  /* makes the hover smooth */
+
   transition: all 1s ease-in-out;
 }
 
-/* hover: each box uses two transforms */
 #box1:hover {
   transform: rotate(5deg) scale(1.1);
   background-color: green;
