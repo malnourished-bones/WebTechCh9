@@ -1,178 +1,101 @@
-/* =========================================================
-   Lab 9 - Chapter 9: Pseudo-classes, Transitions,
-   Transforms and Animations
-   ========================================================= */
-
-/* ---------- Base ---------- */
-* { box-sizing: border-box; }
-
 body {
+  font-family: Arial, sans-serif;
+  background-color: #0b1220;
+  color: white;
   margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #0b1220;
-  color: #e6edf7;
-  line-height: 1.6;
 }
 
-header { text-align: center; padding: 30px 20px 10px; }
-header h1 { margin: 0; color: #4fc3f7; }
+header, nav, section, footer {
+  text-align: center;
+  padding: 15px;
+}
 
-nav { text-align: center; padding: 15px; }
-main { max-width: 1000px; margin: 0 auto; padding: 20px; }
-h2 { color: #4fc3f7; }
-footer { text-align: center; padding: 20px; color: #8a9bb5; }
+h1, h2 {
+  color: lightskyblue;
+}
 
-/* ---------- Pseudo-classes + Transition (slides 3-5) ---------- */
 nav a {
-  color: #e6edf7;
+  color: white;
   text-decoration: none;
-  margin: 0 14px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-
-  transition-property: color, border-color;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-in-out;
+  margin: 0 15px;
+  transition: color 0.5s;
 }
-nav a:hover { color: #4fc3f7; border-color: #4fc3f7; }
 
-/* ---------- Requirement 1: Keyframes (slides 11-14) ---------- */
+nav a:hover {
+  color: lightskyblue;
+}
 
-/* from / to form */
+/* keyframes: the dot in the banner pulses */
 @keyframes pulse {
-  from { transform: scale(1);   opacity: 1; }
-  to   { transform: scale(1.5); opacity: 0.6; }
+  from { transform: scale(1); }
+  to { transform: scale(1.5); }
 }
 
-/* percentage form with a middle step, like the "ghumakkad" demo */
-@keyframes scan {
-  0%   { left: 10px;  top: 0px; }
-  50%  { left: 45%;   top: 12px; }
-  100% { left: calc(100% - 110px); top: 0px; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ---------- Security Status banner ---------- */
+/* security status banner */
 .status-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #11301f;
-  color: #b9f6ca;
+  background-color: darkgreen;
   padding: 10px;
-  font-weight: 600;
+  text-align: center;
 }
 
-/* Requirement 2: animation properties (slide 12) */
-.status-dot {
-  width: 14px;
-  height: 14px;
-  background: #4cd964;
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: lime;
   border-radius: 50%;
+  margin-right: 8px;
 
   animation-name: pulse;
   animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
 
-/* Scanner box that moves across the page */
-.scan-track {
-  position: relative;
-  height: 55px;
-  background: #0f1a2e;
-  border-bottom: 1px solid #243556;
-}
-
-.scan-box {
-  position: absolute;
-  left: 10px;
-  top: 0;
-  width: 100px;
-  height: 36px;
-  line-height: 36px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #0b1220;
-  background: #4cd964;
-  border: 1px solid #0b1220;
-  border-radius: 5px;
-
-  animation-name: scan;
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-delay: 0s;
-  animation-iteration-count: 4;
-  animation-direction: alternate;
-}
-
-/* ---------- Service boxes ---------- */
+/* service boxes */
 .service-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding: 20px 0;
+  justify-content: center;
+  gap: 30px;
 }
 
 .service-box {
-  flex: 1 1 250px;
-  background: #15213a;
-  border: 1px solid #243556;
+  width: 220px;
+  padding: 20px;
+  border: 1px solid white;
   border-radius: 5px;
-  padding: 24px;
+  background-color: #15213a;
 
-  /* fade in when the page loads */
-  animation-name: fadeIn;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: 1;
-
-  /* Requirement 3: transition (slides 4-5) */
-  transition-property: all;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
+  /* makes the hover smooth */
+  transition: all 1s ease-in-out;
 }
 
-#box1 { background-color: #1e3a2a; }
-#box2 { background-color: #2a1e3a; }
-#box3 { background-color: #3a2420; }
-
-/* Requirement 4: two transform functions on :hover (slides 6-10) */
+/* hover: each box uses two transforms */
 #box1:hover {
   transform: rotate(5deg) scale(1.1);
-  border-color: lime;
+  background-color: green;
 }
+
 #box2:hover {
-  transform: translateY(-20px) scale(1.05);
-  border-color: blueviolet;
+  transform: translateY(-20px) scale(1.1);
+  background-color: blueviolet;
 }
+
 #box3:hover {
   transform: translateX(15px) skew(-5deg);
-  border-color: indianred;
+  background-color: indianred;
 }
 
-/* ---------- Button with :hover and :active (slide 3) ---------- */
+/* button */
 .btn {
   display: inline-block;
-  padding: 10px 28px;
-  color: #0b1220;
-  text-decoration: none;
-  font-weight: 700;
+  padding: 10px 25px;
   background-color: aliceblue;
+  color: black;
+  text-decoration: none;
   border: 1px solid blue;
   border-radius: 5px;
-
-  transition-property: all;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
+  transition: all 1s ease-in-out;
 }
 
 .btn:hover {
@@ -181,12 +104,5 @@ nav a:hover { color: #4fc3f7; border-color: #4fc3f7; }
 }
 
 .btn:active {
-  transform: scale(1.2) rotate(-3deg);
-  border: 1px solid red;
   background-color: indianred;
-}
-
-/* Respect users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
 }
